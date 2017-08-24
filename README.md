@@ -1,19 +1,18 @@
 OpenOPC for Python 1.3.0
-Copyright (c) 2008-2012 by Barry Barnreiter (barry_b@users.sourceforge.net)
-Copyright (c) 2014 by Anton D. Kachalov (mouse@yandex.ru)
+Copyright (c) 2007-2012 Barry Barnreiter (barry_b@users.sourceforge.net)
+Copyright (c) 2014 Anton D. Kachalov (mouse@yandex.ru)
+Copyright (c) 2017 José A. Maita (jose.a.maita@gmail.com)
 Copyright (c) 2017 Cédric Hernalsteens (cedric.hernalsteens@gmail.com)
 
 http://openopc.sourceforge.net/
 https://github.com/ya-mouse/openopc
 http://github.com/chernals/openopc
 
-Notes about version 1.3.0
--------------------------
+# Notes about version 1.3.0
 
 TODO
 
-Post installation
------------------
+# Post installation
 
 Please go through the following post installation steps and functional
 checks to verify your installation of OpenOPC for Python is working
@@ -67,9 +66,7 @@ e-mail.  Please see the project website for current contact
 information.
 
 
-
-Software Developers
--------------------
+# Software Developers
 
 If you elected to install the OpenOPC Development library during the
 installation process, then you'll need to also download and install
@@ -109,8 +106,7 @@ the Gateway Service provides a quick and easy method for bypassing the
 DCOM security nightmares which are all too common when using OPC.
 
 
-Documentation
--------------
+# Documentation
 
 A PDF manual for OpenOPC is included in this installation inside the
 "doc" folder.   Users are encouraged to also look at the OpenOPC web
@@ -118,8 +114,7 @@ site for additional usage examples that may not be contained in the
 manual.
 
 
-Technical Support
------------------
+# Technical Support
 
 If you have any questions, bug reports, or suggestions for improvements
 please feel free to contact the author at:
