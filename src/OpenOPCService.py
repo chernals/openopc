@@ -1,8 +1,6 @@
 ###########################################################################
 #
-# OpenOPC Gateway Service
-#
-# A Windows service providing remote access to the OpenOPC library.
+# OpenOPC for Python Library Module
 #
 # Copyright (c) 2007-2012 Barry Barnreiter (barry_b@users.sourceforge.net)
 # Copyright (c) 2014 Anton D. Kachalov (mouse@yandex.ru)
@@ -10,7 +8,6 @@
 # Copyright (c) 2017 Cédric Hernalsteens (cedric.hernalsteens@gmail.com)
 #
 ###########################################################################
-
 import win32serviceutil
 import win32service
 import win32event
