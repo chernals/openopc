@@ -11,12 +11,6 @@
 
 import os
 import sys
-import time
-import string
-import socket
-import re
-import Pyro4.core
-from multiprocessing import Queue
 
 __version__ = '1.3.0'
 
@@ -82,13 +76,13 @@ OPC_CLIENT = 'OpenOPC'
 
 
 def quality_str(quality_bits):
-    """Convert OPC quality bits to a descriptive string"""
+    """Convert OPC quality bits to a descriptive string."""
     quality = (quality_bits >> 6) & 3
     return OPC_QUALITY[quality]
 
 
 def type_check(tags):
-    """Perform a type check on a list of tags"""
+    """Perform a type check on a list of tags."""
     if type(tags) in (list, tuple):
         single = False
     elif tags is None:
@@ -121,7 +115,7 @@ def tags2trace(tags):
 
 
 def exceptional(func, alt_return=None, alt_exceptions=(Exception,), final=None, catch=None):
-    """Turns exceptions into an alternative return value"""
+    """Turns exceptions into an alternative return value."""
     def _exceptional(*args, **kwargs):
         try:
             try:
@@ -138,17 +132,14 @@ def exceptional(func, alt_return=None, alt_exceptions=(Exception,), final=None, 
 
 
 def get_sessions(host='localhost', port=7766):
-    """Return sessions in OpenOPC Gateway Service as GUID:host hash"""
+    """Return sessions in OpenOPC Gateway Service as GUID:host hash."""
     import Pyro4.core
     server_obj = Pyro4.Proxy("PYRO:opc@{0}:{1}".format(host, port))
     return server_obj.get_clients()
 
 
 def open_client(host='localhost', port=7766):
-    """Connect to the specified OpenOPC Gateway Service"""
+    """Connect to the specified OpenOPC Gateway Service."""
     import Pyro4.core
     server_obj = Pyro4.Proxy("PYRO:opc@{0}:{1}".format(host, port))
     return server_obj.create_client()
-
-
-

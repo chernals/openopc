@@ -8,12 +8,19 @@
 # Copyright (c) 2017 Cédric Hernalsteens (cedric.hernalsteens@gmail.com)
 #
 ###########################################################################
+import os
+import time
+import string
+import socket
+import re
+import Pyro4.core
+from multiprocessing import Queue
 
 
 @Pyro4.expose
 class Client:
     def __init__(self, opc_class=None, client_name=None):
-        """Instantiate OPC automation class"""
+        """Instantiate OPC Client object."""
 
         self.callback_queue = Queue()
 
