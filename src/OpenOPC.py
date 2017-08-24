@@ -19,6 +19,7 @@ import Pyro4.core
 from multiprocessing import Queue
 
 __version__ = '1.3.0'
+print("Importing version {}".format((__version__, )))
 
 current_client = None
 

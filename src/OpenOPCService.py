@@ -76,7 +76,7 @@ class opc(object):
     def create_client(self):
         """Create a new OpenOPC instance in the Pyro server"""
         
-        opc_obj = OpenOPC.client(opc_class)
+        opc_obj = OpenOPC.Client(opc_class)
         uri = self._pyroDaemon.register(opc_obj)
 
         uuid = uri.asString()
@@ -151,6 +151,7 @@ if __name__ == '__main__':
             daemon.register(opc(), 'opc')
 
             socks = set(daemon.sockets)
+            print("Starting OpenOPCService in the foreground on port {}.".format(7777))
             while True:
                 ins, outs, exs = select.select(socks, [], [], 1)
                 if ins:
