@@ -73,9 +73,9 @@ if 'OPC_GATE_HOST' in os.environ:    open_host = environ['OPC_GATE_HOST']
 if 'OPC_GATE_PORT' in os.environ:    open_port = environ['OPC_GATE_PORT']
 if 'OPC_TIMEOUT' in os.environ:      timeout = int(environ['OPC_TIMEOUT'])
 
-# FUNCTION: Print comand line usage summary
 
 def usage():
+   """Print command line usage summary."""
    print('OpenOPC Command Line Client', OpenOPC.__version__)
    print('Copyright (c) 2007-2012 Barry Barnreiter (barry_b@users.sourceforge.net)')
    print('')
@@ -117,15 +117,16 @@ def usage():
    print('  -R,      --recursive       List items recursively when browsing tree')
    print('  -,       --pipe            Pipe item/value list from standard input')
 
-# Helper class for handling signals (i.e. Ctrl-C)
 
 class SigHandler:
-  def __init__(self):
-      self.signaled = 0
-      self.sn = None
-  def __call__(self, sn, sf):
-      self.sn = sn 
-      self.signaled += 1
+    """Helper class for handling signals (i.e. Ctrl-C)"""
+    def __init__(self):
+        self.signaled = 0
+        self.sn = None
+
+    def __call__(self, sn, sf):
+        self.sn = sn
+        self.signaled += 1
 
 # FUNCTION: Iterable version of rotate()
 

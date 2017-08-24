@@ -34,8 +34,8 @@ Pyro4.config.SERVERTYPE='thread'
 #Pyro4.config.SERIALIZER='marshal'
 
 opc_class = OpenOPC.OPC_CLASS
-opc_gate_host = os.environ['OPC_GATE_HOST']
-opc_gate_port = int(os.environ['OPC_GATE_PORT'])
+opc_gate_host = os.environ.get('OPC_GATE_HOST', '0.0.0.0')
+opc_gate_port = int(os.environ.get('OPC_GATE_PORT', 7766))
 
 def getvar(env_var):
     """Read system environment variable from registry"""
@@ -147,12 +147,12 @@ if __name__ == '__main__':
 
     else:
         if sys.argv[1] == '--foreground':
-            daemon = Pyro4.core.Daemon(host=opc_gate_host, port=opc_gate_port)
+            daemon = Pyro4.core.Daemon(host=opc_gate_host, port=7777)
             daemon.register(opc(), 'opc')
 
             socks = set(daemon.sockets)
             while True:
-                ins,outs,exs = select.select(socks,[],[],1)
+                ins, outs, exs = select.select(socks, [], [], 1)
                 if ins:
                     daemon.events(ins)
 
