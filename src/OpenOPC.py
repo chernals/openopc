@@ -59,26 +59,26 @@ OPC_STATUS = (0, 'Running', 'Failed', 'NoConfig', 'Suspended', 'Test')
 BROWSER_TYPE = (0, 'Hierarchical', 'Flat')
 ACCESS_RIGHTS = (0, 'Read', 'Write', 'Read/Write')
 OPC_QUALITY = ('Bad', 'Uncertain', 'Unknown', 'Good')
-OPC_CLASS = """Matrikon.OPC.Automation;
-               Graybox.OPC.DAWrapper;
-               HSCOPC.Automation;
-               RSI.OPCAutomation;
-               OPC.Automation"""
-OPC_SERVER = """Hci.TPNServer;
-                HwHsc.OPCServer;
-                opc.deltav.1;
-                AIM.OPC.1;
-                Yokogawa.ExaopcDAEXQ.1;
-                OSI.DA.1;
-                OPC.PHDServerDA.1;
-                Aspen.Infoplus21_DA.1;
-                National Instruments.OPCLabVIEW;
-                RSLinx OPC Server;
-                KEPware.KEPServerEx.V4;
-                Matrikon.OPC.Simulation;
-                Prosys.OPC.Simulation;
-                CCOPC.XMLWrapper.1;
-                OPC.SimaticHMI.CoRtHmiRTm.1"""
+OPC_CLASS = "Matrikon.OPC.Automation;" \
+            "Graybox.OPC.DAWrapper;" \
+            "HSCOPC.Automation;" \
+            "RSI.OPCAutomation;" \
+            "OPC.Automation"
+OPC_SERVER = "Hci.TPNServer;" \
+             "HwHsc.OPCServer;" \
+             "opc.deltav.1;" \
+             "AIM.OPC.1;" \
+             "Yokogawa.ExaopcDAEXQ.1;" \
+             "OSI.DA.1;" \
+             "OPC.PHDServerDA.1;" \
+             "Aspen.Infoplus21_DA.1;" \
+             "National Instruments.OPCLabVIEW;" \
+             "RSLinx OPC Server;" \
+             "KEPware.KEPServerEx.V4;" \
+             "Matrikon.OPC.Simulation;" \
+             "Prosys.OPC.Simulation;" \
+             "CCOPC.XMLWrapper.1;" \
+             "OPC.SimaticHMI.CoRtHmiRTm.1"
 OPC_CLIENT = 'OpenOPC'
 
 
@@ -170,7 +170,7 @@ class GroupEvents:
         self.client.callback_queue.put((TransactionID, ClientHandles, ItemValues, Qualities, TimeStamps))
 
 
-@Pyro4.expose  # needed for Pyro4 4.55
+@Pyro4.expose
 class Client:
     def __init__(self, opc_class=None, client_name=None):
         """Instantiate OPC automation class"""
@@ -224,7 +224,6 @@ class Client:
 
     def connect(self, opc_server=None, opc_host='localhost'):
         """Connect to the specified OPC server"""
-
         pythoncom.CoInitialize()
 
         if opc_server is None:
@@ -537,8 +536,8 @@ class Client:
                                                                                        server_handles)
                         except pythoncom.com_error as err:
                             error_msg = 'SyncRead: %s' % self._get_error_str(err)
-                            raise OPCError(error_msg)
-
+                            raise (error_msg)
+                        OPCError
                         for i, tag in enumerate(valid_tags):
                             tag_value[tag] = values[i]
                             tag_quality[tag] = qualities[i]

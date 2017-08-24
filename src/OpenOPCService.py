@@ -34,7 +34,7 @@ Pyro4.config.SERVERTYPE='thread'
 #Pyro4.config.SERIALIZER='marshal'
 
 opc_class = OpenOPC.OPC_CLASS
-opc_gate_host = os.environ.get('OPC_GATE_HOST', '0.0.0.0')
+opc_gate_host = os.environ.get('OPC_GATE_HOST', '127.0.0.1')
 opc_gate_port = int(os.environ.get('OPC_GATE_PORT', 7766))
 
 def getvar(env_var):
@@ -75,8 +75,8 @@ class opc(object):
     
     def create_client(self):
         """Create a new OpenOPC instance in the Pyro server"""
-        
         opc_obj = OpenOPC.Client(opc_class)
+
         uri = self._pyroDaemon.register(opc_obj)
 
         uuid = uri.asString()
@@ -85,7 +85,7 @@ class opc(object):
         opc_obj._open_host = opc_gate_host
         opc_obj._open_port = opc_gate_port
         opc_obj._open_guid = uuid
-        
+
         remote_ip = uuid # self.getLocalStorage().caller.addr[0]
 #        try:
 #            remote_name = socket.gethostbyaddr(remote_ip)[0]
