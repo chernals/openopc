@@ -230,8 +230,9 @@ class Client:
             return valid_tags, server_handles
 
         def remove_items(tags):
-            if self.trace: self.trace('RemoveItems(%s)' % tags2trace([''] + tags))
-            server_handles = [self._group_server_handles[sub_group][tag] for tag in tags]
+            if self.trace:
+                self.trace('RemoveItems(%s)' % tags2trace([''] + tags))
+            server_handles = [self._group_server_handles[sub_group][t] for t in tags]
             server_handles.insert(0, 0)
             errors = []
 
@@ -1008,7 +1009,7 @@ class Client:
             raise OPCError(error_msg)
 
     def info(self):
-        """Return list of (name, value) pairs about the OPC server"""
+        """Return list of (name, value) pairs about the OPC server."""
 
         try:
             self._update_tx_time()
@@ -1052,10 +1053,9 @@ class Client:
             raise OPCError(error_msg)
 
     def ping(self):
-        """Check if we are still talking to the OPC server"""
+        """Check if we are still talking to the OPC server."""
         try:
             # Convert OPC server time to milliseconds
-            print(self._opc.CurrentTime)
             opc_serv_time = int(float(self._opc.CurrentTime) * 1000000.0)
             if opc_serv_time == self._prev_serv_time:
                 return False
@@ -1066,11 +1066,11 @@ class Client:
             return False
 
     def _get_error_str(self, err):
-        """Return the error string for a OPC or COM error code"""
+        """Return the error string for a OPC or COM error code."""
 
         hr, msg, exc, arg = err.args
 
-        if exc == None:
+        if exc is None:
             error_str = str(msg)
         else:
             scode = exc[5]
