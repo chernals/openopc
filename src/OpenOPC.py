@@ -5,6 +5,7 @@
 # Copyright (c) 2007-2012 Barry Barnreiter (barry_b@users.sourceforge.net)
 # Copyright (c) 2014 Anton D. Kachalov (mouse@yandex.ru)
 # Copyright (c) 2017 José A. Maita (jose.a.maita@gmail.com)
+# Copyright (c) 2017 Cédric Hernalsteens (cedric.hernalsteens@gmail.com)
 #
 ###########################################################################
 
@@ -19,7 +20,6 @@ import Pyro4.core
 from multiprocessing import Queue
 
 __version__ = '1.3.0'
-print("Importing version {}".format((__version__, )))
 
 current_client = None
 
