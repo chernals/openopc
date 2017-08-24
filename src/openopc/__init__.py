@@ -11,6 +11,7 @@
 
 import os
 import sys
+import Pyro4.Core
 
 __version__ = '1.3.0'
 
@@ -109,7 +110,8 @@ def tags2trace(tags):
     """Convert a list tags into a formatted string suitable for the trace callback log"""
     arg_str = ''
     for i, t in enumerate(tags[1:]):
-        if i > 0: arg_str += ','
+        if i > 0:
+            arg_str += ','
         arg_str += '%s' % t
     return arg_str
 
@@ -138,8 +140,7 @@ def get_sessions(host='localhost', port=7766):
     return server_obj.get_clients()
 
 
-def open_client(host='localhost', port=7766):
+def open_client(host='localhost', port=7766, **kwargs):
     """Connect to the specified OpenOPC Gateway Service."""
-    import Pyro4.core
     server_obj = Pyro4.Proxy("PYRO:opc@{0}:{1}".format(host, port))
     return server_obj.create_client()
