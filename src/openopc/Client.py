@@ -579,7 +579,7 @@ class Client:
                 raise TypeError(
                     "write(): 'tag_value_pairs' parameter must be a (tag, value) tuple or a list of (tag,value) tuples")
 
-            if tag_value_pairs == None:
+            if tag_value_pairs is None:
                 tag_value_pairs = ['']
                 single = False
             elif type(tag_value_pairs[0]) in (str, bytes):
@@ -989,9 +989,14 @@ class Client:
             error_msg = 'list: %s' % self._get_error_str(err)
             raise OPCError(error_msg)
 
-    def list(self, paths='*', recursive=False, flat=False, include_type=False):
+    def list(self, paths='*', recursive=False, flat=False, include_type=False, **kwargs):
         """Return list of item nodes at specified path(s) (tree browser)"""
-
+        if kwargs.get('recursive'):
+            recursive = kwargs['recursive']
+        if kwargs.get('flat'):
+            recursive = kwargs['flat']
+        if kwargs.get('include_type'):
+            recursive = kwargs['include_type']00
         nodes = self.ilist(paths, recursive, flat, include_type)
         return list(nodes)
 

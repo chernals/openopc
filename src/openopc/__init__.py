@@ -11,7 +11,7 @@
 
 import os
 import sys
-import Pyro4.Core
+import Pyro4.core
 
 __version__ = '1.3.0'
 
