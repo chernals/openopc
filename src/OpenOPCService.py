@@ -34,7 +34,7 @@ Pyro4.config.SERVERTYPE='thread'
 #Pyro4.config.SERIALIZER='marshal'
 
 opc_class = OpenOPC.OPC_CLASS
-opc_gate_host = os.environ.get('OPC_GATE_HOST', '127.0.0.1')
+opc_gate_host = os.environ.get('OPC_GATE_HOST', '10.100.43.26')
 opc_gate_port = int(os.environ.get('OPC_GATE_PORT', 7766))
 
 def getvar(env_var):
@@ -147,11 +147,11 @@ if __name__ == '__main__':
 
     else:
         if sys.argv[1] == '--foreground':
-            daemon = Pyro4.core.Daemon(host=opc_gate_host, port=7777)
+            daemon = Pyro4.core.Daemon(host=opc_gate_host, port=60000)
             daemon.register(opc(), 'opc')
 
             socks = set(daemon.sockets)
-            print("Starting OpenOPCService in the foreground on port {}.".format(7777))
+            print("Starting OpenOPCService in the foreground on port {}.".format(60000))
             while True:
                 ins, outs, exs = select.select(socks, [], [], 1)
                 if ins:
