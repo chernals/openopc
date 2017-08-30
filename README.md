@@ -1,12 +1,19 @@
-OpenOPC for Python 1.2.0
-Copyright (c) 2008-2012 by Barry Barnreiter (barry_b@users.sourceforge.net)
-Copyright (c) 2014 by Anton D. Kachalov (mouse@yandex.ru)
+OpenOPC for Python 1.3.0
 
-http://openopc.sourceforge.net/
-https://github.com/ya-mouse/openopc
+Copyright (c) 2007-2012 Barry Barnreiter (barry_b@users.sourceforge.net)  
+Copyright (c) 2014 Anton D. Kachalov (mouse@yandex.ru)  
+Copyright (c) 2017 José A. Maita (jose.a.maita@gmail.com)  
+Copyright (c) 2017 Cédric Hernalsteens (cedric.hernalsteens@gmail.com)  
 
-Post installation
------------------
+http://openopc.sourceforge.net/  
+https://github.com/ya-mouse/openopc  
+http://github.com/chernals/openopc  
+
+# Notes about version 1.3.0
+
+TODO
+
+# Post installation
 
 Please go through the following post installation steps and functional
 checks to verify your installation of OpenOPC for Python is working
@@ -60,9 +67,7 @@ e-mail.  Please see the project website for current contact
 information.
 
 
-
-Software Developers
--------------------
+# Software Developers
 
 If you elected to install the OpenOPC Development library during the
 installation process, then you'll need to also download and install
@@ -102,17 +107,44 @@ the Gateway Service provides a quick and easy method for bypassing the
 DCOM security nightmares which are all too common when using OPC.
 
 
-Documentation
--------------
+# Documentation
 
 A PDF manual for OpenOPC is included in this installation inside the
 "doc" folder.   Users are encouraged to also look at the OpenOPC web
 site for additional usage examples that may not be contained in the
 manual.
 
+# A note for *nix users
+Note that when using OpenOPC on a non-Windows system you must be running the
+OpenOPC Gateway Service (OpenOPCService.py) on a Windows box somewhere on
+your network. The OpenOPC Gateway Service then acts as a proxy for all
+your OPC calls.
 
-Technical Support
------------------
+For example, if your Windows node which is running the Gateway Service
+had the IP address of 192.168.1.20 then you would use the OpenOPC command
+line client like this:
+
+opc.py -H 192.168.1.20 -s Matrikon.OPC.Simulation -r Random.Real4
+
+Or when using the OpenOPC.py module inside your own Python code, you
+would create your opc object like this:
+
+import OpenOPC
+opc = opc.open_client('192.168.1.20')
+opc.connect('Matrikon.OPC.Simulation')
+
+The above examples all assume that the OPC server and the OpenOPC
+Gateway Service are both installed on the same box.  This is the
+recommended configuration in order to avoid any DCOM security issues.
+
+If you downloaded this source code only version of OpenOPC for Unix, it
+is recommended you also download one of the win32 labeld downloads
+and use the pre-complied OpenOPCService.exe executable for Windows.
+This file is self contained and does not require that Python
+be installed on your Windows box.
+
+
+# Technical Support
 
 If you have any questions, bug reports, or suggestions for improvements
 please feel free to contact the author at:

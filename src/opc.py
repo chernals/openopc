@@ -1,15 +1,13 @@
 ###########################################################################
 #
-# OpenOPC Command Line Client
-#
-# A cross-platform OPC-DA client built using the OpenOPC for Python
-# library module.
+# OpenOPC for Python Library Module
 #
 # Copyright (c) 2007-2012 Barry Barnreiter (barry_b@users.sourceforge.net)
 # Copyright (c) 2014 Anton D. Kachalov (mouse@yandex.ru)
+# Copyright (c) 2017 José A. Maita (jose.a.maita@gmail.com)
+# Copyright (c) 2017 Cédric Hernalsteens (cedric.hernalsteens@gmail.com)
 #
 ###########################################################################
-
 from sys import *
 from getopt import *
 from os import *
@@ -154,14 +152,14 @@ def irotate(data, num_columns, value_idx = 1):
     if len(new_row) > 0:
         yield new_row
 
-# FUNCTION: Rotate the values of every N rows to form N columns
 
 def rotate(data, num_columns, value_idx = 1):
+    """Rotate the values of every N rows to form N columns."""
     return list(irotate(data, num_columns, value_idx))
 
-# FUNCTION: Print output in the specified style from a list of data
 
 def output(data, style = 'table', value_idx = 1):
+    """Print output in the specified style from a list of data."""
     global write
     name_idx = 0
 
@@ -353,7 +351,7 @@ if opc_server == '' and action not in ('servers', 'sessions'):
 
 if data_source in ('cache', 'hybrid') and read_function == 'async' and update_rate == None and repeat_pause != None:
     update_rate = int(repeat_pause * 1000.0)
-elif update_rate == None:
+elif update_rate is None:
     update_rate = -1
 
 # Build tag list
@@ -421,8 +419,8 @@ else:
 sh = SigHandler()
 signal.signal(signal.SIGINT,sh)
 if os.name == 'nt':
-    signal.signal(signal.SIGBREAK,sh)
-signal.signal(signal.SIGTERM,sh)
+    signal.signal(signal.SIGBREAK, sh)
+signal.signal(signal.SIGTERM, sh)
 
 # ACTION: List active sessions in OpenOPC service
 
@@ -437,13 +435,12 @@ if action == 'sessions':
     exit()
 
 # Connect to OpenOPC service (Open mode)
-
 if opc_mode == 'open':
     try:
         opc = OpenOPC.open_client(open_host, open_port)
     except:
         error_msg = sys.exc_info()[1]
-        print("Cannot connect to OpenOPC Gateway Service at %s:%s - %s" % (open_host, open_port, error_msg))
+        print(f"Cannot connect to OpenOPC Gateway Service at {open_host}:{open_port} - {error_msg}")
         exit()
 
 # Dispatch to COM class (DCOM mode)
@@ -656,5 +653,6 @@ elif action == 'servers':
 try:
     opc.close()
 except OpenOPC.OPCError as error_msg:
-    if opc_mode == 'open': error_msg = error_msg[0]
+    if opc_mode == 'open':
+        error_msg = error_msg[0]
     print(error_msg)
