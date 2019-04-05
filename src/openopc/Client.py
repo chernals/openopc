@@ -447,7 +447,7 @@ class Client:
                         value = None
                         quality = 'Error'
                         timestamp = None
-                        if tag in include_error and not error_msgs:
+                       if tag in include_error and not error_msgs:
                             error_msgs[tag] = ''
 
                     if single:
